@@ -1,0 +1,33 @@
+# The contents of the grimoire, in the order of Lloyd (2nd ed., 1987).
+# A chapter with a url is written; one without is still sealed.
+- book: I
+  title: Of the Preliminaries
+  chapters:
+    - title: Of first-order theories
+    - title: Of interpretations and models
+    - title: Of unification
+    - title: Of fixpoints
+- book: II
+  title: Of Definite Programs
+  chapters:
+    - title: Of the least Herbrand model
+      plain: Declarative semantics
+      url: /book-ii/least-herbrand-model/
+    - title: Of the soundness of SLD-resolution
+    - title: Of the completeness of SLD-resolution
+    - title: Of the independence of the computation rule
+    - title: Of SLD-refutation procedures
+    - title: Of the cut
+- book: III
+  title: Of Normal Programs
+  chapters:
+    - title: Of negative information
+    - title: Of the soundness of negation as failure
+    - title: Of the soundness of SLDNF-resolution
+    - title: Of the completeness of negation as failure
+    - title: Of the completeness of SLDNF-resolution
+- book: IV
+  title: Of Divination
+  note: Probability over possible worlds. Beyond Lloyd.
+  chapters:
+    - title: Of the distribution semantics

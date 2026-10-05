@@ -1,0 +1,306 @@
+/* Grimoire: vellum by day, the night library by dark mode.
+   Rubrics in lapis, laws in gold leaf, glosses in the margin. */
+
+:root {
+  --vellum: #e8e2cc;
+  --vellum-deep: #ddd5ba;
+  --ink: #231e1a;
+  --ink-faded: #6b6152;
+  --lapis: #27407a;
+  --gold: #9a7a26;
+  --gold-wash: rgba(168, 132, 44, 0.09);
+  --lapis-wash: rgba(39, 64, 122, 0.06);
+  --rule: rgba(35, 30, 26, 0.22);
+
+  --body: "EB Garamond", "Garamond", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --display: "IM Fell English", "EB Garamond", Georgia, serif;
+  --initial: "UnifrakturMaguntia", "IM Fell English", Georgia, serif;
+
+  --measure: 40rem;
+  --gloss-w: 14rem;
+  --gutter: 2.75rem;
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --vellum: #17151f;
+    --vellum-deep: #1f1c2a;
+    --ink: #e4dcc6;
+    --ink-faded: #a39a86;
+    --lapis: #9fb3e6;
+    --gold: #d4b25a;
+    --gold-wash: rgba(212, 178, 90, 0.08);
+    --lapis-wash: rgba(159, 179, 230, 0.07);
+    --rule: rgba(228, 220, 198, 0.2);
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  font-size: 112.5%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background-color: var(--vellum);
+  /* uneven skin of the page, no image needed */
+  background-image:
+    radial-gradient(ellipse at 15% 10%, var(--vellum-deep) 0%, transparent 55%),
+    radial-gradient(ellipse at 90% 85%, var(--vellum-deep) 0%, transparent 50%);
+  background-attachment: fixed;
+  font-family: var(--body);
+  font-size: 1rem;
+  line-height: 1.6;
+  font-variant-numeric: oldstyle-nums;
+  font-feature-settings: "liga", "dlig";
+  hyphens: auto;
+}
+
+.skip {
+  position: absolute; left: -999px;
+}
+.skip:focus { left: 1rem; top: 1rem; background: var(--vellum); padding: .4rem .7rem; }
+
+a { color: var(--lapis); text-decoration-thickness: 1px; text-underline-offset: .18em; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+main, .running-head, .colophon {
+  max-width: calc(var(--measure) + var(--gutter) + var(--gloss-w));
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+/* ---------- running head and colophon ---------- */
+
+.running-head {
+  display: flex; justify-content: space-between; gap: 1rem;
+  padding-block: 1.4rem .6rem;
+  font-family: var(--display);
+  font-style: italic;
+  color: var(--ink-faded);
+}
+.running-head a { color: inherit; text-decoration: none; font-style: normal; }
+.running-head a:hover { color: var(--lapis); }
+
+.colophon {
+  margin-top: 5rem;
+  padding-block: 1.5rem 3rem;
+  color: var(--ink-faded);
+  font-size: .85rem;
+}
+.colophon p { max-width: var(--measure); border-top: 1px solid var(--rule); padding-top: 1rem; }
+
+/* ---------- type scale ---------- */
+
+h1, h2, h3 {
+  font-family: var(--display);
+  font-weight: 400;
+  line-height: 1.15;
+  color: var(--ink);
+}
+h1 { font-size: 2.6rem; margin: 0; }
+h2 { font-size: 1.6rem; margin: 3.2rem 0 .9rem; color: var(--lapis); }
+h3 { font-size: 1.2rem; margin: 2rem 0 .5rem; font-style: italic; }
+
+p, ul, ol, .incantation, .law, details, pre, table, .katex-display { max-width: var(--measure); }
+p { margin: 0 0 .9rem; }
+em { font-style: italic; }
+
+/* ---------- chapter opening ---------- */
+
+.chapter-head {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.4rem;
+  align-items: center;
+  max-width: var(--measure);
+  margin: 2.5rem 0 2.4rem;
+}
+.sigil { width: 5.5rem; height: 5.5rem; }
+.plain-name {
+  margin: .35rem 0 0;
+  font-style: italic;
+  color: var(--ink-faded);
+}
+
+/* the one illuminated letter per chapter */
+.opening::first-letter {
+  float: left;
+  font-family: var(--initial);
+  font-size: 4.1rem;
+  line-height: .9;
+  padding: .35rem .55rem .25rem;
+  margin: .2rem .7rem 0 0;
+  color: var(--lapis);
+  border: 2px solid var(--gold);
+  box-shadow: inset 0 0 0 4px var(--vellum), inset 0 0 0 5px var(--gold);
+  background: var(--gold-wash);
+}
+.opening { font-size: 1.08rem; }
+
+/* ---------- definitions: the incantations ---------- */
+
+.incantation {
+  margin: 1.4rem 0 1.6rem;
+  padding: 1rem 1.2rem .4rem;
+  border: 3px double var(--lapis);
+  background: var(--lapis-wash);
+}
+.incantation > .name,
+.law > .name {
+  margin: 0 0 .4rem;
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 1.08rem;
+}
+.incantation > .name { color: var(--lapis); }
+
+/* ---------- theorems: the laws of the art ---------- */
+
+.law {
+  margin: 1.4rem 0 1.2rem;
+  padding: .9rem 1.2rem .3rem;
+  border-left: 3px solid var(--gold);
+  background: var(--gold-wash);
+}
+.law > .name { color: var(--gold); }
+
+/* proofs open on request */
+details.working {
+  margin: -.4rem 0 1.6rem;
+  padding: 0 1.2rem;
+  border-left: 1px solid var(--rule);
+}
+details.working > summary {
+  cursor: pointer;
+  font-style: italic;
+  color: var(--ink-faded);
+  list-style: none;
+}
+details.working > summary::before { content: "\2767\00a0"; color: var(--gold); }
+details.working[open] > summary { margin-bottom: .5rem; }
+details.working[open] > summary::before { content: "\2766\00a0"; }
+
+/* ---------- glosses in the margin ---------- */
+
+.gloss {
+  font-size: .86rem;
+  line-height: 1.45;
+  color: var(--ink-faded);
+  margin: 0 0 1rem;
+  padding-left: .8rem;
+  border-left: 1px solid var(--rule);
+  max-width: var(--measure);
+}
+.gloss p { margin: 0 0 .4rem; }
+.gloss p:last-child { margin: 0; }
+
+@media (min-width: 62rem) {
+  .chapter > * { max-width: var(--measure); }
+  .gloss {
+    float: right;
+    clear: right;
+    width: var(--gloss-w);
+    margin-right: calc(-1 * (var(--gloss-w) + var(--gutter)));
+    margin-top: .3rem;
+    border-left: 0;
+    padding-left: 0;
+    position: relative;
+  }
+  .gloss::before {
+    content: "";
+    position: absolute;
+    left: -1.1rem; top: .55em;
+    width: .45rem; height: .45rem;
+    border: 1px solid var(--gold);
+    transform: rotate(45deg);
+  }
+}
+
+/* ---------- code, tables, math ---------- */
+
+code, pre {
+  font-family: "Iosevka", "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: .82em;
+}
+pre {
+  margin: 1rem 0 1.3rem;
+  padding: .9rem 1.1rem;
+  overflow-x: auto;
+  background: var(--vellum-deep);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  line-height: 1.5;
+}
+div.highlighter-rouge { max-width: var(--measure); }
+.highlight .c, .highlight .c1, .highlight .cm { color: var(--ink-faded); font-style: italic; }
+.highlight .nf, .highlight .nb { color: var(--lapis); }
+.highlight .nv, .highlight .n { color: var(--ink); }
+.highlight .p, .highlight .o { color: var(--gold); }
+
+.table-scroll { max-width: var(--measure); overflow-x: auto; }
+table { border-collapse: collapse; margin: 1rem 0 1.4rem; font-size: .95rem; }
+th, td { text-align: left; vertical-align: top; padding: .35rem .9rem .35rem 0; border-bottom: 1px solid var(--rule); }
+th { font-family: var(--display); font-weight: 400; font-style: italic; color: var(--ink-faded); }
+
+.katex { font-size: 1.04em; }
+.katex-display { overflow-x: auto; overflow-y: hidden; padding: .2rem 0; }
+
+/* ---------- chapter turn ---------- */
+
+.turn {
+  display: flex; justify-content: space-between; gap: 1rem;
+  max-width: var(--measure);
+  margin-top: 4rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--rule);
+  font-style: italic;
+}
+.sealed-note { color: var(--ink-faded); }
+
+/* ---------- frontispiece ---------- */
+
+.frontispiece { max-width: var(--measure); margin: 3.5rem 0 3rem; }
+.frontispiece .sigil { width: 7rem; height: 7rem; display: block; margin-bottom: 1.6rem; }
+.frontispiece h1 {
+  font-family: var(--initial);
+  font-size: clamp(3.4rem, 11vw, 5.6rem);
+  color: var(--lapis);
+  letter-spacing: .01em;
+  line-height: 1;
+}
+.frontispiece .subtitle {
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 1.3rem;
+  margin: .6rem 0 1.4rem;
+}
+
+.tome { max-width: var(--measure); }
+.tome section { margin: 0 0 2.2rem; }
+.tome h2 { margin: 0 0 .5rem; font-size: 1.35rem; }
+.tome h2 .numeral { display: inline-block; min-width: 2.6rem; color: var(--gold); }
+.tome .book-note { margin: -.2rem 0 .5rem 2.6rem; color: var(--ink-faded); font-style: italic; }
+.tome ol { list-style: none; margin: 0; padding-left: 2.6rem; }
+.tome li { padding: .12rem 0; }
+.tome li.sealed { color: var(--ink-faded); }
+.tome li.sealed::after { content: "\00a0(sealed)"; font-size: .8rem; font-style: italic; opacity: .8; }
+.tome li .plain { color: var(--ink-faded); font-style: italic; }
+
+@media (max-width: 34rem) {
+  html { font-size: 106%; }
+  h1 { font-size: 2.1rem; }
+  .chapter-head { grid-template-columns: 1fr; gap: .8rem; }
+  .sigil { width: 4.2rem; height: 4.2rem; }
+}
+
+@media print {
+  body { background: #fff; color: #000; }
+  .running-head, .turn, .skip { display: none; }
+  details.working { display: block; }
+}

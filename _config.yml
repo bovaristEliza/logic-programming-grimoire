@@ -1,0 +1,13 @@
+title: Grimoire
+baseurl: "/logic-programming-grimoire"
+url: "https://bovaristEliza.github.io"
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  math_engine: mathjax   # emits \( \) and \[ \]; KaTeX renders them client-side
+  syntax_highlighter: rouge
+  auto_ids: true
+
+exclude:
+  - README.md

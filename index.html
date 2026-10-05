@@ -1,0 +1,28 @@
+---
+layout: default
+title: Contents
+---
+<div class="frontispiece">
+  <img class="sigil" src="{{ '/assets/sigils/fixpoint.svg' | relative_url }}" alt="">
+  <h1>Grimoire</h1>
+  <p class="subtitle">of logic programming, set down in the order of Lloyd's <cite>Foundations</cite></p>
+  <p>Each chapter states the art precisely and then says it plainly. Definitions are written as incantations, theorems as laws, proofs are kept closed until asked for, and the margin holds the glosses. The old names are decoration; the plain name of every concept is always given beside it.</p>
+</div>
+
+<div class="tome">
+{% for book in site.data.tome %}
+  <section>
+    <h2><span class="numeral">{{ book.book }}.</span>{{ book.title }}</h2>
+    {% if book.note %}<p class="book-note">{{ book.note }}</p>{% endif %}
+    <ol>
+    {% for ch in book.chapters %}
+      {% if ch.url %}
+      <li><a href="{{ ch.url | relative_url }}">{{ ch.title }}</a>{% if ch.plain %} <span class="plain">({{ ch.plain }})</span>{% endif %}</li>
+      {% else %}
+      <li class="sealed">{{ ch.title }}</li>
+      {% endif %}
+    {% endfor %}
+    </ol>
+  </section>
+{% endfor %}
+</div>
