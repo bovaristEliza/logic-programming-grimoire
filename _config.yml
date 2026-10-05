@@ -11,3 +11,5 @@ kramdown:
 
 exclude:
   - README.md
+  - COPYRIGHT.md
+  - THIRD_PARTY_NOTICES.md
